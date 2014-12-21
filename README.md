@@ -5,7 +5,7 @@ Tools for running Mojolicious servers
 
 ### mj-run.pl
 
-  Usage: mj-run.pl [start|stop|restart]
+    Usage: mj-run.pl [start|stop|restart]
 
 This script *starts* one or more Mojolicious servers as defined in the configuration file <code>config.json</code>.
 
@@ -32,7 +32,7 @@ specified <code>port</code> and <code>http</code> protocol. It will also run
 
 ### configure_env
 
-  Usage: configure_env [TEST|PROD]
+    Usage: configure_env [TEST|PROD]
 
 This script creates JSON files for different deployment environments from a
 master JSON file named <code>tools/config_all.json</code>.
