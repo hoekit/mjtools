@@ -1,0 +1,20 @@
+{ 
+    "PROD" : { 
+        "aServer"  : {
+            "port"    : "1234",
+            "http"    : "https",
+            "logpath" : "log/aServer-prod.log",
+            "dbfile"  : "db/aServer.db"
+        }
+    },
+    "TEST" : { 
+        "aServer"  : {
+            "port"    : "5678", 
+            "http"    : "https",
+            "logpath" : "log/aServer-test.log",
+            "dbfile"  : "db/test_aServer.db"
+        }
+    },
+
+    "_output_files" : [ "config.json" ]
+}

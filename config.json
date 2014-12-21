@@ -1,0 +1,8 @@
+{ 
+    "aServer"  : {
+        "port"    : "5678", 
+        "http"    : "https",
+        "logpath" : "log/aServer-test.log",
+        "dbfile"  : "db/test_aServer.db"
+    }
+}
