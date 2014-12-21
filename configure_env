@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use Path::Tiny qw/path/;
+use JSON;
+use 5.10.0;
+use Data::Dumper;
+
+my $env = $ARGV[0] || 'TEST';   # Defaults to TEST environment
+my $source_file = $ARGV[1] || 'tools/config_all.json';
+
+# Read configuration
+my $config_all = decode_json path($source_file)->slurp();
+
+# Write configuration to files listed in @target_files
+my @target_files = @{$config_all->{_output_files}};
+path($_)->spew(encode_json $config_all->{$env}) for @target_files;
+
