@@ -17,13 +17,13 @@ An example of this file is provided below:
             "http"    : "https",
             "logpath" : "log/aServer.log",
             "dbfile"  : "db/test_aServer.db"
-      }
+        },
         "anotherServer"  : {
             "port"    : "5678", 
             "http"    : "https",
             "logpath" : "log/anotherServer.log",
             "api_key" : "12345678"
-      }
+        }
     }
 
 <code>mj-run.pl</code> will start the script named "aServer.pl" at the
@@ -41,19 +41,33 @@ An example of this file as follows:
 
     { 
         "PROD" : { 
+            "dbfile" : "db/accounts.db",
             "aServer"  : {
                 "port"    : "1234",
                 "http"    : "https",
                 "logpath" : "log/aServer-prod.log",
                 "dbfile"  : "db/aServer.db"
+            },
+            "anotherServer"  : {
+                "port"    : "5678", 
+                "http"    : "https",
+                "logpath" : "log/anotherServer.log",
+                "api_key" : "12345678"
             }
         },
         "TEST" : { 
+            "dbfile" : "db/test-accounts.db",
             "aServer"  : {
                 "port"    : "2234", 
                 "http"    : "https",
                 "logpath" : "log/aServer-test.log",
                 "dbfile"  : "db/test_aServer.db"
+            },
+            "anotherServer"  : {
+                "port"    : "6678", 
+                "http"    : "https",
+                "logpath" : "log/anotherServer.log",
+                "api_key" : "12345678"
             }
         },
 
@@ -70,4 +84,20 @@ The usual practice will be to specify all the configuration info in a
 <code>config_all.json</code> file. Then run <code>configure_env</code> to
 generate the <code>config.json</code> file required by <code>mj-run.pl</code>.
 And finally run mj-run.pl to start the server(s).
+
+
+### Typical Usage
+
+Below is a sample script that reads in the config file and sets up the
+configuration of the various servers:
+
+    use strict;
+    use warnings;
+    use Path::Tiny qw/path/;
+    use JSON qw/decode_json/;
+
+    # Global Variables
+    my $CONFIG = decode_json(path('config.json')->slurp);
+    my $A_SERVER = $CONFIG->{aServer};
+    my $ANOTHER_SERVER = $CONFIG->{anotherServer};
 
